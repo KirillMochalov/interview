@@ -7,6 +7,38 @@
 4. Что такое HTTP Interceptors?
 5. Доводилось ли писать свои валидаторы реактивных форм?
 6. В чем преимущество от использования asyncPipe? Приходилось ли использовать?
+7. Какие ошибки содержит компонент?
+````
+@Component({
+  selector: 'users',
+  template: `
+    <div>Выбран пользователь: {{selectedUser.lastName}} {{selectedUser.firstName}}</div>
+    <div *ngFor="let user of users" (click)="selectUser(user.id)">
+      {{user.firstName}}
+    </div>
+  `,
+})
+export class UsersComponent {
+  selectedUser!: UserDetailed;
+  users: User[] = [];
+
+  constructor(
+    private usersService: UsersService
+  ) {}
+  
+  ngOnInit() {
+    this.usersServce.getAll().subscribe(users => {
+      this.users = users;
+    });
+  }
+
+  selectUser(id: any) {
+    this.usersService.get(id).subscribe(user => {
+      this.selectedUser = user;
+    });
+  }
+}
+````
 
 ## Js/Ts
 1. Что такое generic type? Доводилось ли писать?
