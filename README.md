@@ -52,6 +52,15 @@ export class UsersComponent {
 9. В чем отличие map от forEach?
 10. Что такое чистая функция?
 11. Что такое иммутабельный объект?
+12. Как переписать функцию без типа any, чтобы TS автоматически вычислил верный тип возвращаемого значения?
+````
+function getObjectProp(obj: any, key: any): any {
+  return obj[key];
+}
+
+const foo = getObjectProp({id: 1, name: 'John Dow'}, 'name'); // implicit type = string
+const bar = getObjectProp({someVar: true}, 'someVar'); // implicit type = boolean
+````
 
 ## RxJS
 1. Что такое Subject и BehaviourSubject? В чем отличие?
